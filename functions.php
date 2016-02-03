@@ -29,28 +29,27 @@ if (mysqli_num_rows($result_port) > 0) {
 function writePagination()
 {
     global $portinfo;
-    $i = 1;
-    foreach ($portinfo as $r1) {
-        if  (count($portinfo) % 6 == 0 && count($portinfo) == 6 && $i == 1){
-            echo " <li class=\"active\"><a href=\"#grid" . $i . "\">1</a></li>\n";
-            $i++;
+    $pageno = ceil(count($portinfo) / 6);
+    for ($x = 1; $x <= $pageno; $x++) {
+        if($x == 1){
+            echo " <li class=\"active\"><a href=\"#grid" . $x . "\">" . $x . "</a></li>\n";
         }
-        if (count($portinfo) % 6 >= 0 && count($portinfo) > 6 && $i == 2){
-            echo " <li><a href=\"#grid" . $i . "\">1</a></li>\n";
-            $i++;
+        if($x > 1){
+            echo " <li><a href=\"#grid" . $x . "\">" . $x . "</a></li>\n";
         }
-    }
+    } 
+
 }
 
 function writeGrid()
 {
     global $portinfo;
     $i = 1;
-    
+    $pageno = 1;
     foreach ($portinfo as $r1) {
         // first item
         if ($i % 6 == 1) {
-            echo "                  <div id=\"grid" . $r1[url] . "\" class=\"col-lg-8 col-lg-pull-4 wow fadeInUp text-center\">\n";
+            echo "                  <div id=\"grid" . $pageno . "\" class=\"col-lg-8 col-lg-pull-4 wow fadeInUp text-center\">\n";
             echo "                        <div class=\"col-md-4 portfolio-item\">\n";
             echo "                            <a href=\"#portfolioModal" . $r1[url] . "\" class=\"portfolio-link\" data-toggle=\"modal\">\n";
             echo "                                <div class=\"portfolio-hover\">\n";
@@ -62,6 +61,7 @@ function writeGrid()
             echo "                                <img src=\"" . $r1[album_cover] . "\" class=\"img-responsive\" alt=\"\">\n";
             echo "                            </a>\n";
             echo "                        </div>\n";
+            $pageno++;
         }
         // second to fifth item
         if ($i % 6 > 1 && $i % 6 <= 5) {
@@ -92,9 +92,19 @@ function writeGrid()
             echo "                                <img src=\"" . $r1[album_cover] . "\" class=\"img-responsive\" alt=\"\">\n";
             echo "                            </a>\n";
             echo "                        </div>\n";
+            echo "                        </div>\n";
+
+        }
+        if ($i == count($portinfo))
+        {
+            $pageno = ceil(count($portinfo) / 6);
+            $slots = (6 * $pageno) - count($portinfo);
+            for ($x = 0; $x < $slots; $x++){
+            echo "                        <div class=\"col-md-4 portfolio-item\">\n";
+            echo "                        </div>\n";
+            }
             echo "                  </div>\n";
         }
-        
         $i++;
     }
 }
