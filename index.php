@@ -1,9 +1,7 @@
 <?php
-         //start php tag
     //include connect.php page for database connection
     include('connect.php');
-    
-    
+    include('functions.php')
 ?>
 
 <!DOCTYPE html>
@@ -40,9 +38,9 @@
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
                     <!--[if lt IE 9]>
-                                            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-                                            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-                                        <![endif]-->
+                                                                    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+                                                                    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+                                                                <![endif]-->
     </head>
 
     <body id="page-top" class="index">
@@ -142,19 +140,18 @@
                         <h2 class="section-heading">Portfolio</h2>
                         <h3 class="section-subheading text-muted">Twist Photography specializes in event coverage such as Corporate Seminars & Conference, Company Annual Diner & Dance, Concert &  Performance, sport events. Consumer's event coverage like Actual-Day Wedding, Birthday Parties, Solemnization, Baby shower and celebrations.</h3>
                     </div>
-                    <div class="col-lg-8 col-lg-pull-4 wow fadeInUp text-center">
+                    
                         <!-- Grid starts here-->
                         <?php writeGrid();?>
-                        <div class="text-pagination">
+                    <div class="col-lg-7">
+                        <div class="text-pagination wow fadeInUp">
                             <ul class="pagination ">
-                                <li class="active"><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
+                                <?php writePagination();?>
+
                             </ul>
                         </div>
                     </div>
+                    <div class="col-lg-5"></div>
                 </div>
                 <div class="row">
 
@@ -227,7 +224,7 @@
         <!-- Portfolio Modals -->
         <!-- Use the modals below to showcase details about your portfolio projects! -->
         <?php writeLightBox();?>
-        
+
         <!-- Wow so much doge animation -->
         <script src="js/wow.min.js"></script>
         <!-- jQuery -->

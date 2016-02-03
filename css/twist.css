@@ -19,7 +19,7 @@ body {
 
 @media (min-width:768px) {
     .text-pagination {
-        text-align: left;
+        text-align: center;
     }
 }
 
