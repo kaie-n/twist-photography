@@ -32,10 +32,10 @@ function writePagination()
     $pageno = ceil(count($portinfo) / 6);
     for ($x = 1; $x <= $pageno; $x++) {
         if($x == 1){
-            echo " <li class=\"active\"><a href=\"#grid" . $x . "\">" . $x . "</a></li>\n";
+            echo " <li class=\"portfolio-gallery active\"><a class=\"page\" href=\"#grid" . $x . "\">" . $x . "</a></li>\n";
         }
         if($x > 1){
-            echo " <li><a href=\"#grid" . $x . "\">" . $x . "</a></li>\n";
+            echo " <li class=\"portfolio-gallery\"><a class=\"page\" href=\"#grid" . $x . "\">" . $x . "</a></li>\n";
         }
     } 
 
@@ -46,25 +46,19 @@ function writeGrid()
     global $portinfo;
     $i = 1;
     $pageno = 1;
+    $flag = FALSE;
     foreach ($portinfo as $r1) {
         // first item
-        if ($i % 6 == 1) {
-            echo "                  <div id=\"grid" . $pageno . "\" class=\"col-lg-8 col-lg-pull-4 wow fadeInUp text-center\">\n";
-            echo "                        <div class=\"col-md-4 portfolio-item\">\n";
-            echo "                            <a href=\"#portfolioModal" . $r1[url] . "\" class=\"portfolio-link\" data-toggle=\"modal\">\n";
-            echo "                                <div class=\"portfolio-hover\">\n";
-            echo "                                    <div class=\"portfolio-hover-content\">\n";
-            echo "                                        <h4>" . $r1[title] . "</h4>\n";
-            echo "                                        <p class=\"text-muted\">" . $r1[category] . "</p>\n";
-            echo "                                    </div>\n";
-            echo "                                </div>\n";
-            echo "                                <img src=\"" . $r1[album_cover] . "\" class=\"img-responsive\" alt=\"\">\n";
-            echo "                            </a>\n";
-            echo "                        </div>\n";
+        if ($i % 6 == 1 && $flag === FALSE) {
+            echo "                  <div id=\"grid" . $pageno . "\" class=\"grid col-lg-8 col-lg-pull-4 wow fadeInUp text-center\">\n";
+            $pageno++;
+        }
+        if ($i % 6 == 1 && $flag === TRUE) {
+            echo "                  <div id=\"grid" . $pageno . "\" class=\"grid col-lg-8 col-lg-pull-4 text-center hide\">\n";
             $pageno++;
         }
         // second to fifth item
-        if ($i % 6 > 1 && $i % 6 <= 5) {
+        if ($i % 6 >= 1 && $i % 6 <= 5) {
             
             echo "                        <div class=\"col-md-4 portfolio-item\">\n";
             echo "                            <a href=\"#portfolioModal" . $r1[url] . "\" class=\"portfolio-link\" data-toggle=\"modal\">\n";
@@ -101,9 +95,13 @@ function writeGrid()
             $slots = (6 * $pageno) - count($portinfo);
             for ($x = 0; $x < $slots; $x++){
             echo "                        <div class=\"col-md-4 portfolio-item\">\n";
+            echo "                                <img src=\"img/portfolio/blank.gif\" class=\"img-responsive\" alt=\"\">\n";
             echo "                        </div>\n";
             }
             echo "                  </div>\n";
+        }
+        if ($i === 6){
+            $flag = TRUE;
         }
         $i++;
     }
