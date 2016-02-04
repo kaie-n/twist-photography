@@ -61,7 +61,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand page-scroll" href="#page-top" style="padding: 0;"><img src="img/logos/twist.png" width="56" /></a>
+                    <a class="navbar-brand page-scroll" href="#page-top" style="padding: 0;"><img src="img/logos/twist.png" width="56" alt="Twist Photography SG"/></a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -120,7 +120,7 @@
                         <h3 class="section-subheading text-muted text-justify">Twist Photography was founded in 2013. In the eyes of our photographers. We focus in details, and documenting a beautiful and memorable scene for your lifetime. In the years of building the business, Twist Photography has documented a couple of events ranging from corporate to consumer.</h3>
                     </div>
                     <div class="col-lg-8 wow fadeInUp">
-                        <img class="img-responsive" src="img/about.jpg" alt="">
+                        <img class="img-responsive" src="img/about.jpg" alt="About Us">
                         <div class="row top-buffer">
                             <div class="col-lg-12 text-justify">
                                 <h4 class="section-subheading ">Clients</h4>
