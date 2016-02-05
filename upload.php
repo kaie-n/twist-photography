@@ -1,61 +1,79 @@
 <?php
-$target_dir = "img/portfolio/";
-$target_file = $target_dir . basename($_FILES["album_cover"]["name"]);
-$uploadOk = 1;
-$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-// Check if image file is a actual image or fake image
-if(isset($_POST["submit"])) {
-    $check = getimagesize($_FILES["album_cover"]["tmp_name"]);
-    if($check !== false) {
-        echo "File is an image - " . $check["mime"] . ".";
-        $uploadOk = 1;
-    } else {
-        echo "File is not an image.";
-        $uploadOk = 0;
+// check album cover
+if (isset($_FILES["album_cover"])) {
+    $errors    = array();
+    $file_name = $_FILES["album_cover"]['name'];
+    $file_size = $_FILES["album_cover"]['size'];
+    $file_tmp  = $_FILES["album_cover"]['tmp_name'];
+    $file_type = $_FILES["album_cover"]['type'];
+    $file_ext  = strtolower(end(explode('.', $_FILES["album_cover"]['name'])));
+    
+    $expensions = array(
+        "jpeg",
+        "jpg",
+        "png"
+    );
+    
+    if (in_array($file_ext, $expensions) === false) {
+        $errors[] = "Extension not allowed, please choose a JPEG or PNG file.";
     }
-}
-// Check if file already exists
-if (file_exists($target_file)) {
-    echo "Sorry, file already exists.";
-    $uploadOk = 0;
-}
-// Check file size
-if ($_FILES["album_cover"]["size"] > 500000) {
-    echo "Sorry, your file is too large.";
-    $uploadOk = 0;
-}
-// Allow certain file formats
-if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-&& $imageFileType != "gif" && $imageFileType != "JPG" && $imageFileType != "PNG" && $imageFileType != "JPEG"
-&& $imageFileType != "GIF") {
-    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-    $uploadOk = 0;
-}
-// Check if $uploadOk is set to 0 by an error
-if ($uploadOk == 0) {
-    echo "Sorry, your file was not uploaded.";
-// if everything is ok, try to upload file
-} else {
-    if (move_uploaded_file($_FILES["album_cover"]["tmp_name"], $target_file)) {
-        header('Location: admin.php?result=success');
+    
+    if ($file_size > 2097152) {
+        $errors[] = 'File size must be below 2 MB';
+    }
+    
+    if (empty($errors) == true) {
+        move_uploaded_file($file_tmp, "img/portfolio/" . $file_name);
+        $album_cover    = "img/portfolio/" . $file_name;
+        $_GET["result"] = "success";
     } else {
-        header('Location: admin.php?result=failed');
+        $_GET["result"] = "failed";
     }
 }
 
+if (isset($_FILES["album_photos"])) {
+    $file_ary = reArrayFiles($_FILES['album_photos']);
+    
+    foreach ($file_ary as $file) {
+        $file_name = $file['name'];
+        $file_size = $file['size'];
+        $file_tmp  = $file['tmp_name'];
+        $file_type = $file['type'];
+        $file_ext  = strtolower(end(explode('.', $file['name'])));
+        if (in_array($file_ext, $expensions) === false) {
+            $errors[] = "Extension not allowed, please choose a JPEG or PNG file.";
+        }
+        
+        if ($file_size > 2097152) {
+            $errors[] = 'File size must be below 2 MB';
+        }
+        
+        if (empty($errors) == true) {
+            move_uploaded_file($file_tmp, "img/portfolio/" . $file_name);
+            $album_cover    = "img/portfolio/" . $file_name;
+            $_GET["result"] = "success";
+        } else {
+            $_GET["result"] = "failed";
+        }
+    }
+}
 
-function reArrayFiles(&$file_post) {
 
-    $file_ary = array();
+
+
+function reArrayFiles(&$file_post)
+{
+    
+    $file_ary   = array();
     $file_count = count($file_post['name']);
-    $file_keys = array_keys($file_post);
-
-    for ($i=0; $i<$file_count; $i++) {
+    $file_keys  = array_keys($file_post);
+    
+    for ($i = 0; $i < $file_count; $i++) {
         foreach ($file_keys as $key) {
             $file_ary[$i][$key] = $file_post[$key][$i];
         }
     }
-
+    
     return $file_ary;
 }
 ?>
