@@ -2,7 +2,6 @@
 session_start();
 //include connect.php page for database connection
 include('connect.php');
-include('functions.php');
 include('upload.php');
 if (isset($_SESSION['error'])) {
     $a = $_SESSION['error'];
@@ -87,15 +86,15 @@ if (isset($_SESSION['error'])) {
                     <!-- change this before deploying-->
                     <div class="row">
                         <div class="col-md-12">
-                            <form method="POST" name="upload_portfolio" id="upload_portfolio" enctype="multipart/form-data" action="admin.php">
+                            <form method="POST" name="upload_portfolio" id="upload_portfolio" enctype="multipart/form-data" action="admin.php" onsubmit="return checkSize(2097152)">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Title *" id="title" required data-validation-required-message="Please enter the title.">
+                                    <input type="text" class="form-control" placeholder="Title *" name="title" id="title" required data-validation-required-message="Please enter the title.">
                                 </div>
                                 <div class="form-group">
-                                    <input type="tel" class="form-control" placeholder="Category *" id="phone" required data-validation-required-message="Please enter the category.">
+                                    <input type="text" class="form-control" placeholder="Category *" name="category" id="category" required data-validation-required-message="Please enter the category.">
                                 </div>
                                 <div class="form-group">
-                                    <textarea class="form-control" placeholder="Description *" id="description" required data-validation-required-message="Please enter the Description" style="height: 200px"></textarea>
+                                    <textarea class="form-control" placeholder="Description *" name="description" id="description" required data-validation-required-message="Please enter the Description" style="height: 200px"></textarea>
                                 </div>
                                 <input type="text" name="_gotcha" style="display:none" />
                                 <div class="clearfix"></div>
@@ -104,10 +103,10 @@ if (isset($_SESSION['error'])) {
                                         <div class="input-group">
                                             <span class="input-group-btn">
                                                 <span class="btn btn-primary btn-file">
-                                                    Add Album Cover&hellip; <input type="file" name="album_cover" required data-validation-required-message="Please upload album cover.">
+                                                    Add Album Cover&hellip; <input id="album_cover" type="file" name="album_cover" required data-validation-required-message="Please upload album cover.">
                                                 </span>
                                             </span>
-                                            <input type="text" class="form-control" readonly>
+                                            <input type="text" placeholder="220px x 449px, < 2MB" class="form-control" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -117,10 +116,10 @@ if (isset($_SESSION['error'])) {
                                         <div class="input-group">
                                             <span class="input-group-btn">
                                                 <span class="btn btn-primary btn-file">
-                                                    Add Photos&hellip; <input type="file" name="album_photos[]" required data-validation-required-message="Please upload photos." multiple>
+                                                    Add Photos&hellip; <input id="album_photos" type="file" name="album_photos[]" required data-validation-required-message="Please upload photos." multiple>
                                                 </span>
                                             </span>
-                                            <input type="text" class="form-control" readonly>
+                                            <input type="text" placeholder="< 2MB per photos" class="form-control" readonly>
                                         </div>
                                         <p></p>
                                     </div>
@@ -136,15 +135,9 @@ if (isset($_SESSION['error'])) {
                                                 }
                                                 if (isset($_GET['result']) && $_GET['result'] == "failed") {
                                                 foreach ($errors as $err) {
-                                                echo $err;
+                                                echo "<p>" . $err . "</p>";
                                                 }
                                                 }
-                                                if (!isset($_GET['result'])) {
-                                                foreach ($errors as $err) {
-                                                echo $err;
-                                                }
-                                                }
-
                                                 ?>
                                             </p>
                                         </div>

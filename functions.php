@@ -15,7 +15,8 @@ if (mysqli_num_rows($result_promo) > 0) {
 
 
 
-$portfolio   = "SELECT * FROM portfolio";
+//$portfolio   = "SELECT * FROM portfolio";
+$portfolio = "SELECT e.title, e.category,e.description,e.album_cover, e.url, u.photos FROM portfolio AS e INNER JOIN gallery AS u ON e.url = u.url";
 $result_port = mysqli_query($conn, $portfolio);
 $portinfo    = array();
 if (mysqli_num_rows($result_port) > 0) {
@@ -110,7 +111,6 @@ function writeGrid()
 function writeLightBox()
 {
     global $portinfo;
-    
     foreach ($portinfo as $r1) {
         echo "        <div class=\"portfolio-modal modal fade\" id=\"portfolioModal" . $r1[url] . "\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\n";
         echo "            <div class=\"modal-content\">\n";
@@ -127,7 +127,7 @@ function writeLightBox()
         echo "                                <!-- Project Details Go Here -->\n";
         echo "                                <h2>" . $r1[title] . "</h2>\n";
         echo "                                <p class=\"item-intro text-muted\">" . $r1[category] . "</p>\n";
-        echo "                                <img class=\"img-responsive img-centered\" src=\"" . $r1[album_big] . "\" alt=\"\">\n";
+        echo "                                <img class=\"img-responsive img-centered\" src=\"" . $r1[photos] . "\" alt=\"\">\n";
         echo "                                <p>" . $r1[description] . "</p>\n";
         echo "                               \n";
         echo "                                <button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\"><i class=\"fa fa-times\"></i> Close Project</button>\n";
@@ -142,5 +142,5 @@ function writeLightBox()
 }
 
 // close the mysqli connection
-mysqli_close($conn);
+//mysqli_close($conn);
 ?>
