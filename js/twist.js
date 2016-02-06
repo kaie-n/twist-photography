@@ -15,15 +15,15 @@ $(function () {
     });
 
     $('a.page').bind('click', function (event) {
-        
+
         event.preventDefault();
         var $anchor = $(this);
-       
+
         $('.grid').addClass("hide");
         $('.portfolio-gallery').removeClass("active")
         $($anchor.attr('href')).removeClass("hide");
         $(this).parent().addClass("active");
-       
+
     });
 
 });
@@ -44,7 +44,15 @@ $(window).load(function () {
     // PAGE IS FULLY LOADED  
     // FADE OUT YOUR OVERLAYING DIV
     $('#overlay').fadeOut();
+    // photogallery at lightbox
+
 
 });
-
+// wow doge animation
 new WOW().init();
+
+
+baguetteBox.run('.gallery', {
+    animation: 'fadeIn'
+
+});

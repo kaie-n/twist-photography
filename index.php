@@ -22,7 +22,7 @@
         <!-- Custom CSS -->
         <link rel="stylesheet" href="css/twist.css">
         <link rel="stylesheet" href="css/animate.css">
-
+        <link rel="stylesheet" href="css/baguetteBox.min.css">
         <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
         <link rel="icon" type="image/png" href="img/favicon.png" />
         <link rel="icon" href="img/favicon.ico" type="image/x-icon">
@@ -34,13 +34,13 @@
         <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css">
-
+                
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
                     <!--[if lt IE 9]>
-                                                                    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-                                                                    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-                                                                <![endif]-->
+                                                                                <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+                                                                                <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+                                                                            <![endif]-->
     </head>
 
     <body id="page-top" class="index">
@@ -61,7 +61,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand page-scroll" href="#page-top" style="padding: 0;"><img src="img/logos/twist.png" width="56" alt="Twist Photography SG"/></a>
+                    <a class="navbar-brand page-scroll" href="#page-top" style="padding: 0;"><img src="img/logos/twist.png" width="56" alt="Twist Photography SG" /></a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -140,9 +140,9 @@
                         <h2 class="section-heading">Portfolio</h2>
                         <h3 class="section-subheading text-muted">Twist Photography specializes in event coverage such as Corporate Seminars & Conference, Company Annual Diner & Dance, Concert &  Performance, sport events. Consumer's event coverage like Actual-Day Wedding, Birthday Parties, Solemnization, Baby shower and celebrations.</h3>
                     </div>
-                    
-                        <!-- Grid starts here-->
-                        <?php writeGrid();?>
+
+                    <!-- Grid starts here-->
+                    <?php writeGrid();?>
                     <div class="col-lg-7">
                         <div class="text-pagination wow fadeInUp">
                             <ul class="pagination ">
@@ -202,7 +202,9 @@
                         </form>
                     </div>
                     <div class="col-lg-6 top-buffer-25 wow fadeInUp">
+                        <?php if($empty_promo == FALSE){?>
                         <img class="img-responsive" src="<?php echo $promo_url; ?>" alt="Special Offer!" />
+                        <?php }  ?>
                     </div>
                 </div>
                 <div class="row">
@@ -243,6 +245,7 @@
         <script src="js/contact_me.js"></script>
 
         <!-- Custom Theme JavaScript -->
+        <script src="js/baguetteBox.min.js"></script>
         <script src="js/twist.js"></script>
 
     </body>

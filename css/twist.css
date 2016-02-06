@@ -108,7 +108,7 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     border-radius: 3px;
     font-size: 18px;
-    padding: 20px 40px;
+    /*padding: 20px 40px;*/
 }
 
     .btn-xl:hover, .btn-xl:focus, .btn-xl:active, .btn-xl.active, .open .dropdown-toggle.btn-xl {
@@ -856,6 +856,10 @@ ul.social-buttons {
     margin-top: 10px;
 }
 
+.top-buffer-20 {
+    margin-top: 20px;
+}
+
 .top-buffer-25 {
     margin-top: 25px;
 }
@@ -932,4 +936,18 @@ body {
     cursor: inherit;
     display: block;
     height: 34px;
+}
+
+.clear-padding{
+    padding: 100px 0px !important;
+}
+.clear-padding-left{
+    padding-left: 0px !important;
+}
+/*Customised photo grid*/
+.center-cropped {
+  width: 220px;
+  height: 159px;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
