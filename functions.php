@@ -58,22 +58,28 @@ function listPortfolio()
 {
     global $empty_portfolio;
     global $portinfo;
+
+    $i = 0;
     if ($empty_portfolio == FALSE){
         foreach ($portinfo as $r1) {
             echo "                     <div class=\"col-lg-12 top-buffer-20\">\n";
-            echo "                        <div class=\"col-lg-2 text-justify\">\n";
+            echo "                        <div class=\"col-lg-4 text-justify\">\n";
             echo "                            <h4 class=\"section-subheading \">" . $r1['title'] . "</h4>\n";
             echo "                        </div>\n";
-            echo "                        <div class=\"col-lg-1 text-center top-buffer\">\n";
-            echo "                            <input id=\"edit\" type=\"button\" class=\"btn btn-xl\" value=\"Edit!\">\n";
+            echo "                        <div class=\"col-lg-2 text-center top-buffer\">\n";
+            echo "                          <form method=\"POST\" name=\"edit_port\" action=\"admin.php\">\n";
+            echo "                              <input type=\"hidden\" name=\"portfolio_edit_list\" value=\"" . $i .  "\">";
+            echo "                              <input id=\"edit\" name=\"edit\" type=\"submit\" class=\"btn btn-xl\" value=\"Edit!\">\n";
+            echo "                          </form>\n";
             echo "                        </div>\n";
-            echo "                        <div class=\"col-lg-1 text-center top-buffer\">\n";
-            echo "                          <form method=\"POST\" name=\"rem_port\" action=\"admin.php\">\n";
-            echo "                          <input type=\"hidden\" name=\"portfolio_list\" value=\"" . $r1['url'] .  "\">";
-            echo "                            <input id=\"remove\" name=\"remove_portfolio\" type=\"submit\" class=\"btn btn-xl\" value=\"Remove!\">\n";
+            echo "                        <div class=\"col-lg-3 text-center top-buffer\">\n";
+            echo "                          <form method=\"POST\" name=\"rem_port\" onsubmit=\"return confirmDelete()\" action=\"admin.php\">\n";
+            echo "                              <input type=\"hidden\" name=\"portfolio_list\" value=\"" . $r1['url'] .  "\">";
+            echo "                              <input id=\"remove\" name=\"remove_portfolio\" type=\"submit\" class=\"btn btn-xl\" value=\"Remove!\">\n";
+            echo "                          </form>\n";
             echo "                        </div>\n";
-            echo "                        </form>\n";
             echo "                    </div>\n";
+            $i++;
         }
     }
     else{
@@ -81,6 +87,12 @@ function listPortfolio()
             echo "                        <div class=\"col-lg-2 text-justify\">\n";
             echo "                            <h4 class=\"section-subheading \">No portfolio!</h4>\n";
             echo "                        </div>\n";
+    }
+}
+
+function editPortfolio(){
+   global $portinfo;
+    if ($empty_portfolio == FALSE){
     }
 }
 
@@ -129,7 +141,11 @@ function writeGrid()
             echo "                                        <p class=\"text-muted\">" . $r1['category'] . "</p>\n";
             echo "                                    </div>\n";
             echo "                                </div>\n";
-            echo "                                <img src=\"" . $r1['album_cover'] . "\" class=\"img-responsive\" alt=\"\">\n";
+            echo "                              <div class=\"center-cropped\" \n"; 
+            echo "                                   style=\"background-image: url('" . $r1['album_cover'] . "');\">\n";
+            echo "                              <img src=\"img/portfolio/blank.gif\" class=\"img-responsive opacity-0\" alt=\"" . $r1['title'] . "\">" ;
+            echo "                              </div>\n";
+            //echo "                                <img src=\"" . $r1['album_cover'] . "\" class=\"img-responsive\" alt=\"\">\n";
             echo "                            </a>\n";
             echo "                        </div>\n";
             
@@ -144,18 +160,22 @@ function writeGrid()
             echo "                                        <p class=\"text-muted\">" . $r1['category'] . "</p>\n";
             echo "                                    </div>\n";
             echo "                                </div>\n";
-            echo "                                <img src=\"" . $r1['album_cover'] . "\" class=\"img-responsive\" alt=\"\">\n";
+            echo "                              <div class=\"center-cropped\" \n"; 
+            echo "                                   style=\"background-image: url('" . $r1['album_cover'] . "');\">\n"; 
+            echo "                              <img src=\"img/portfolio/blank.gif\" class=\"img-responsive opacity-0\" alt=\"" . $r1['title'] . "\">" ;
+            echo "                              </div>\n";
             echo "                            </a>\n";
             echo "                        </div>\n";
             echo "                        </div>\n";
             
         }
+        // adding empty slots
         if ($i == count($portinfo)) {
             $pageno = ceil(count($portinfo) / 6);
             $slots  = (6 * $pageno) - count($portinfo);
             for ($x = 0; $x < $slots; $x++) {
                 echo "                        <div class=\"col-md-4 portfolio-item\">\n";
-                echo "                                <img src=\"img/portfolio/blank.gif\" class=\"img-responsive\" alt=\"\">\n";
+                echo "                                <img src=\"img/portfolio/blank.gif\" class=\"img-responsive hide-if-mobile\" alt=\"\">\n";
                 echo "                        </div>\n";
             }
             echo "                  </div>\n";

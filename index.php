@@ -51,7 +51,7 @@
             </div>
         </div>
         <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-fixed-top">
+        <nav id="navigation" class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header page-scroll">
@@ -101,10 +101,7 @@
                             <a href="https://www.facebook.com/twistphotography/"><i class="fa fa-facebook"></i></a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="https://www.instagram.com/twistphotographysg/"><i class="fa fa-instagram"></i></a>
                         </li>
                     </ul>
                 </div>
@@ -115,18 +112,13 @@
         <section id="about">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-4 wow fadeInUp">
+                    <div class="col-lg-6 wow fadeInUp">
                         <h2 class="section-heading">About</h2>
                         <h3 class="section-subheading text-muted text-justify">Twist Photography was founded in 2013. In the eyes of our photographers. We focus in details, and documenting a beautiful and memorable scene for your lifetime. In the years of building the business, Twist Photography has documented a couple of events ranging from corporate to consumer.</h3>
                     </div>
-                    <div class="col-lg-8 wow fadeInUp">
-                        <img class="img-responsive" src="img/about.jpg" alt="About Us">
-                        <div class="row top-buffer">
-                            <div class="col-lg-12 text-justify">
-                                <h4 class="section-subheading ">Clients</h4>
-                                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed rutrum ullamcorper tellus faucibus varius. Phasellus maximus ex in eros cursus, vel euismod urna ultricies. Nullam tristique nibh quis nisi dignissim, quis pellentesque urna condimentum. Fusce congue mollis sem eget fringilla. Suspendisse suscipit cursus euismod. Aliquam quam neque, mattis sit amet facilisis et, suscipit a velit. Curabitur turpis dui, cursus non cursus in, vehicula vel dui. Nam sodales id eros nec sodales. Donec non ante tincidunt, facilisis massa at, bibendum ex. Praesent magna metus, tincidunt in erat ac, pharetra sodales enim.</p>
-                            </div>
-                        </div>
+                    <div class="col-lg-6 text-center wow fadeInUp">
+                        <img class="img-responsive center-block" src="img/about.jpg" alt="About Us">
+
                     </div>
                 </div>
             </div>
@@ -136,13 +128,17 @@
         <section id="portfolio" class="bg-black">
             <div class="container">
                 <div class="row">
+                    <div class="row">
                     <div class="col-lg-4 col-lg-push-8 text-center color-white wow fadeInUp">
                         <h2 class="section-heading">Portfolio</h2>
                         <h3 class="section-subheading text-muted">Twist Photography specializes in event coverage such as Corporate Seminars & Conference, Company Annual Diner & Dance, Concert &  Performance, sport events. Consumer's event coverage like Actual-Day Wedding, Birthday Parties, Solemnization, Baby shower and celebrations.</h3>
                     </div>
 
                     <!-- Grid starts here-->
+                    
                     <?php writeGrid();?>
+                    </div>
+                    <div class="row">
                     <div class="col-lg-7">
                         <div class="text-pagination wow fadeInUp">
                             <ul class="pagination ">
@@ -152,6 +148,7 @@
                         </div>
                     </div>
                     <div class="col-lg-5"></div>
+                    </div>
                 </div>
                 <div class="row">
 

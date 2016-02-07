@@ -36,13 +36,13 @@
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
                     <!--[if lt IE 9]>
-                                                                                                                                                                                                                                                                <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-                                                                                                                                                                                                                                                                <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-                                                                                                                                                                                                                                                            <![endif]-->
+                                                                                                                                                                                                                                                                            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+                                                                                                                                                                                                                                                                            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+                                                                                                                                                                                                                                                                        <![endif]-->
     </head>
     <body id="page-top" class="index">
         <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-fixed-top navbar-shrink" style="display: none;">
+        <nav class="navbar navbar-default navbar-fixed-top navbar-shrink hide">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header page-scroll">
@@ -87,7 +87,7 @@
                         <!-- change this before deploying-->
                         <div class="row">
                             <div class="col-md-12">
-                                <h3 class="section-heading text-muted text-justify">Portfolio</h3>
+                                <h3 class="section-heading text-muted">Portfolio</h3>
                                 <form method="POST" name="upload_portfolio" id="upload_portfolio" enctype="multipart/form-data" action="admin.php" onsubmit="return checkSize(2097152)">
                                     <div class="form-group">
                                         <input type="text" class="form-control" placeholder="Title *" name="title" id="title" required data-validation-required-message="Please enter the title.">
@@ -100,51 +100,56 @@
                                     </div>
                                     <input type="text" name="_gotcha" style="display:none" />
                                     <div class="clearfix"></div>
-                                    <div class="row">
-                                        <div class="col-lg-6 text-left">
-                                            <div class="input-group">
-                                                <span class="input-group-btn">
-                                                    <span class="btn btn-primary btn-file">
-                                                    Add Album Cover&hellip; <input id="album_cover" type="file" name="album_cover" required data-validation-required-message="Please upload album cover.">
+                                    <div class="col-lg-6 clear-padding-left text-left">
+                                        <div class="row">
+                                            <div class="col-lg-12 text-left">
+                                                <div class="input-group">
+                                                    <span class="input-group-btn">
+                                                        <span class="btn btn-primary btn-file">
+                                                        Add Album Cover&hellip; <input id="album_cover" type="file" name="album_cover" required data-validation-required-message="Please upload album cover.">
+                                                        </span>
                                                     </span>
-                                                </span>
-                                                <input type="text" placeholder="220px x 449px, < 2MB, JPG only!" class="form-control" readonly="readonly">
+                                                    <input type="text" placeholder="220px x 449px, < 2MB, JPG only!" class="form-control" readonly="readonly">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12 text-left">
+                                                <p></p>
+                                                <div class="input-group">
+                                                    <span class="input-group-btn">
+                                                        <span class="btn btn-primary btn-file">
+                                                        Add Photos&hellip; <input id="album_photos" type="file" name="album_photos[]" required data-validation-required-message="Please upload photos." multiple>
+                                                        </span>
+                                                    </span>
+                                                    <input type="text" placeholder="< 2MB per photos, JPG only!" class="form-control" readonly="readonly">
+                                                </div>
+                                                <p></p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6 text-left">
+
+                                                <input name="submit" id="submit" type="submit" class="btn btn-xl" value="Upload!">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-lg-6 text-left">
-                                            <p></p>
-                                            <div class="input-group">
-                                                <span class="input-group-btn">
-                                                    <span class="btn btn-primary btn-file">
-                                                    Add Photos&hellip; <input id="album_photos" type="file" name="album_photos[]" required data-validation-required-message="Please upload photos." multiple>
-                                                    </span>
-                                                </span>
-                                                <input type="text" placeholder="< 2MB per photos, JPG only!" class="form-control" readonly="readonly">
-                                            </div>
-                                            <p></p>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-lg-6 text-left">
-                                            <div id="success">
-                                                <p>
-                                                    <?php
-                                                        if (isset($_GET['result']) && $_GET['result'] == "success") {
-                                                        echo "You have successfully uploaded your portfolio!";
+                                    <div class="col-lg-6 text-left">
+                                        <div id="success">
+                                            <p>
+                                                <?php
+                                                    if(isset($_POST["submit"])){
+                                                            if (isset($_GET['result']) && $_GET['result'] == "success") {
+                                                            echo "You have successfully uploaded your portfolio!";
+                                                            }
+                                                            if (isset($_GET['result']) && $_GET['result'] == "failed") {
+                                                            foreach ($errors as $err) {
+                                                            echo "<p>" . $err . "</p>";
+                                                            }
                                                         }
-                                                        if (isset($_GET['result']) && $_GET['result'] == "failed") {
-                                                        foreach ($errors as $err) {
-                                                        echo "<p>" . $err . "</p>";
-                                                        }
-                                                        }
-                                                    ?>
-                                                </p>
-                                            </div>
-
-                                            <input name="submit" id="submit" type="submit" class="btn btn-xl" value="Upload!">
+                                                    }
+                                                ?>
+                                            </p>
                                         </div>
                                     </div>
                                 </form>
@@ -159,10 +164,114 @@
         <section id="portfolio-list" class="clear-padding" style="padding: 50px !important;">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-12 wow fadeInUp">
+                    <div class="col-lg-12">
                         <h3 class="section-heading text-muted">Portfolio List</h3>
                     </div>
-                    <?php listPortfolio(); ?>
+                    <div class="col-lg-6">
+                        <?php listPortfolio(); ?>
+                    </div>
+                    <div class="col-lg-6"> 
+                        <?php if(isset($_POST["update-portfolio"])){ ?>
+                        <div class="col-lg-12 text-left">
+                                        <div id="success">
+                                            <p>
+                                                <?php
+                                                    if (isset($_GET['result']) && $_GET['result'] == "success") {
+                                                    echo "You have successfully updated your portfolio!";
+                                                    }
+                                                    if (isset($_GET['result']) && $_GET['result'] == "failed") {
+                                                    foreach ($errors as $err) {
+                                                    echo "<p>" . $err . "</p>";
+                                                    }
+                                                    }
+                                                ?>
+                                            </p>
+                                        </div>
+                                    </div>
+                        <?php }?>
+                        <?php
+                            if(isset($_POST["edit"])){ 
+                                    $port_edit = $portinfo[$_POST['portfolio_edit_list']];
+                        ?>
+                        <script>
+                            window.onload = scrollDown();
+                            function scrollDown() {
+                                window.location.hash = '#portfolio-list'
+                            }
+                        </script>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 class="section-heading text-muted">Edit Portfolio</h3>
+                                <form method="POST" name="upload_portfolio" id="upload_portfolio" enctype="multipart/form-data" action="admin.php" onsubmit="return checkSize(2097152)">
+                                    <div class="form-group">
+                                        <input type="text" value="<?php echo $port_edit['title'];?>" class="form-control" placeholder="Title *" name="title" id="title" required data-validation-required-message="Please enter the title.">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" value="<?php echo $port_edit['category'];?>" class="form-control" placeholder="Category *" name="category" id="category" required data-validation-required-message="Please enter the category.">
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea class="form-control" placeholder="Description *" name="description" id="description" required data-validation-required-message="Please enter the Description" style="height: 200px"><?php echo $port_edit['description'];?></textarea>
+                                    </div>
+                                    <input type="text" name="_gotcha" style="display:none" />
+                                    <div class="clearfix"></div>
+                                    <div class="col-lg-12 clear-padding-left text-left">
+                                        <div class="row">
+                                            <div class="col-lg-12 top-buffer-25 ">
+                                                <div class="col-sm-2">
+                                                    <img class="img-responsive" src="<?php echo $port_edit['album_cover']; ?>" alt="Album Cover" />
+                                                </div>
+                                            </div>  
+                                            <div class="col-lg-12 text-left top-buffer">
+                                                <div class="input-group">
+                                                    <span class="input-group-btn">
+                                                        <span class="btn btn-primary btn-file">
+                                                        Change Album Cover&hellip; <input id="album_cover" type="file" name="album_cover" data-validation-required-message="Please upload album cover.">
+                                                        </span>
+                                                    </span>
+                                                    <input type="text" placeholder="220px x 449px, < 2MB, JPG only!" class="form-control" readonly="readonly">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12 text-left top-buffer">
+                                                <?php
+                                                 foreach($galleryinfo as $p){
+                                                        if($port_edit['url'] == $p['url']){?>
+                                                <div class="col-sm-2"> 
+                                                    <img class="img-responsive" src="<?php echo $p['thumbs']; ?>" alt="Album Photos" />
+                                                </div>
+                                                <?php
+                                                        }
+                                                    }
+                                                ?>
+                                             </div>
+                                            <div class="col-lg-12 text-left">
+                                                <p></p>
+                                                <div class="input-group">
+                                                    <span class="input-group-btn">
+                                                        <span class="btn btn-primary btn-file">
+                                                        Add More Photos&hellip; <input id="album_photos" type="file" name="album_photos[]" data-validation-required-message="Please upload photos." multiple>
+                                                        </span>
+                                                    </span>
+                                                    <input type="text" placeholder="< 2MB per photos, JPG only!" class="form-control" readonly="readonly">
+                                                </div>
+                                                <p></p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6 text-left">
+                                                <input type="hidden" name="album_cover_empty" value="<?php echo $port_edit['album_cover']; ?>">
+                                                <input type="hidden" name="url" value="<?php echo $port_edit['url']; ?>">
+                                                <input name="update-portfolio" id="update-portfolio" type="submit" class="btn btn-xl" value="Update!">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </form>
+                            </div>
+                        </div>
+                        <?php }?>
+                    </div>
                 </div>
             </div>
         </section>
@@ -181,26 +290,26 @@
                     </div>
                     <div class="col-lg-6">
                         <form method="POST" name="upd-promo" enctype="multipart/form-data" action="admin.php" onsubmit="return checkSize(2097152)">
-                        <div class="row">
-                            <div class="input-group top-buffer">
-                                <span class="input-group-btn">
-                                    <span class="btn btn-primary btn-file">
+                            <div class="row">
+                                <div class="input-group top-buffer">
+                                    <span class="input-group-btn">
+                                        <span class="btn btn-primary btn-file">
                                                     Browse&hellip; <input id="promo" type="file" name="promo" required data-validation-required-message="Please update promotions">
+                                        </span>
                                     </span>
-                                </span>
-                                <input type="text" placeholder="< 2MB, JPG only!" class="form-control" readonly="readonly">
+                                    <input type="text" placeholder="< 2MB, JPG only!" class="form-control" readonly="readonly">
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6 clear-padding-left top-buffer">
-                                <input id="update-promo" name="update-promo" type="submit" class="btn btn-xl" value="Update!">
+                            <div class="row">
+                                <div class="col-lg-6 clear-padding-left top-buffer">
+                                    <input id="update-promo" name="update-promo" type="submit" class="btn btn-xl" value="Update!">
+                                </div>
                             </div>
-                        </div>
                         </form>
                         <div class="row">
                             <div class="col-lg-2 clear-padding-left top-buffer">
                                 <form method="POST" name="rem-promo" action="admin.php">
-                                <input id="remove-promo" name="remove-promo" type="submit" class="btn btn-xl" value="Remove!">
+                                    <input id="remove-promo" name="remove-promo" type="submit" class="btn btn-xl" value="Remove!">
                                 </form>
                             </div>
                         </div>

@@ -21,7 +21,9 @@ $(document).ready(function () {
     });
 });
 
-
+function confirmDelete(){
+    return confirm("Are you sure? \n (Photos and Album covers will be deleted as well!)");
+}
 
 
 function checkSize(max_img_size) {

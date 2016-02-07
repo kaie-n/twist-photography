@@ -16,9 +16,12 @@ $(function () {
 
     $('a.page').bind('click', function (event) {
 
-        event.preventDefault();
-        var $anchor = $(this);
 
+        var $anchor = $(this);
+        $('html, body').stop().animate({
+            scrollTop: $('#portfolio').offset().top
+        }, 500, 'easeInOutExpo');
+         event.preventDefault();
         $('.grid').addClass("hide");
         $('.portfolio-gallery').removeClass("active")
         $($anchor.attr('href')).removeClass("hide");
@@ -27,6 +30,8 @@ $(function () {
     });
 
 });
+
+
 
 
 // Highlight the top nav as scrolling occurs
@@ -45,9 +50,20 @@ $(window).load(function () {
     // FADE OUT YOUR OVERLAYING DIV
     $('#overlay').fadeOut();
     // photogallery at lightbox
-
-
+    $(".portfolio-hover").click(function () {
+        document.getElementById('navigation').style.marginRight = "17px";
+        //$("nav").addClass('margin-right-17');
+    });
+    $(".btn").click(function () {
+        document.getElementById('navigation').style.marginRight = "0px";
+        //$("nav").removeClass('margin-right-17');
+    });
+    $(".close-modal").click(function () {
+        document.getElementById('navigation').style.marginRight = "0px";
+        //$("nav").removeClass('margin-right-17');
+    });
 });
+
 // wow doge animation
 new WOW().init();
 
