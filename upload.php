@@ -271,8 +271,6 @@
     if (isset($_POST['update-portfolio'])) {
             // setting of variables;  
             $errors            = array();  
-            echo empty($errors);
-            print_r($_FILES['album_photos']['size']);
             $title       = mysqli_real_escape_string($conn, $_POST["title"]);
             $category    = mysqli_real_escape_string($conn, $_POST["category"]);
             $description = mysqli_real_escape_string($conn, $_POST["description"]);
@@ -448,11 +446,11 @@
     
                 }
             }
-            // update the portfolio data into database
-            // sql query
+
     
         }
-
+             // update the portfolio data into database
+            // sql query
           if (empty($errors) == true) {
                 $sql = "UPDATE portfolio SET `title` = '$title', `category` = '$category', `description` = '$description', `album_cover` = '$album_cover'  WHERE url = '$url'";
                 if (mysqli_query($conn, $sql)) {

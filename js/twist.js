@@ -51,15 +51,18 @@ $(window).load(function () {
     $('#overlay').fadeOut();
     // photogallery at lightbox
     $(".portfolio-hover").click(function () {
-        document.getElementById('navigation').style.marginRight = "17px";
+        document.getElementsByTagName('html')[0].style.overflowY = 'hidden';
+        //document.getElementById('navigation').style.marginRight = "17px";
         //$("nav").addClass('margin-right-17');
     });
     $(".btn").click(function () {
-        document.getElementById('navigation').style.marginRight = "0px";
+        document.getElementsByTagName('html')[0].style.overflowY = 'scroll';
+        //document.getElementById('navigation').style.marginRight = "0px";
         //$("nav").removeClass('margin-right-17');
     });
     $(".close-modal").click(function () {
-        document.getElementById('navigation').style.marginRight = "0px";
+        document.getElementsByTagName('html')[0].style.overflowY = 'scroll';
+        //document.getElementById('navigation').style.marginRight = "0px";
         //$("nav").removeClass('margin-right-17');
     });
 });

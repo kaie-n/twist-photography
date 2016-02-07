@@ -192,7 +192,7 @@ function writeLightBox()
     global $portinfo;
     global $galleryinfo;
     foreach ($portinfo as $r1) {
-        echo "        <div class=\"portfolio-modal modal fade\" id=\"portfolioModal" . $r1['url'] . "\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\n";
+        echo "        <div class=\"portfolio-modal modal fade clear-padding-left\" id=\"portfolioModal" . $r1['url'] . "\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">\n";
         echo "            <div class=\"modal-content\">\n";
         echo "                <div class=\"close-modal\" data-dismiss=\"modal\">\n";
         echo "                    <div class=\"lr\">\n";
